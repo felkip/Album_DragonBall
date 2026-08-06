@@ -19,12 +19,12 @@ Album-Alura/
 │   │   ├── Goku.png
 │   │   └── Vegeta.png
 │   ├── main.py
-│   └── venv/
+│   └── requirements.txt
 ├── frontend/
 │   ├── index.html
 │   ├── style.css
-│   ├── app.js
-│   └── README.md
+│   └── app.js
+├── setup.ps1
 └── README.md
 ```
 
@@ -33,7 +33,11 @@ Album-Alura/
   - Servir arquivos estáticos de imagens localizados na pasta `figurinhas/` sob a rota `/imgs`.
   - Fornecer a rota GET `/figurinhas` com os dados JSON das figurinhas da coleção (incluindo **Goku** `#01` e **Vegeta** `#02`).
   - Suportar **CORS** para permitir a comunicação com o frontend.
+- **`requirements.txt`**: Lista de dependências Python (`fastapi`, `uvicorn`). Usado pelo `setup.ps1` para instalação automática.
 - **`figurinhas/`**: Pasta contendo as imagens das figurinhas (`Goku.png`, `Vegeta.png`).
+
+### Raiz do Projeto
+- **`setup.ps1`**: Script PowerShell que automatiza a criação do ambiente virtual, instalação de dependências e inicialização do backend.
 
 ### Frontend (`frontend/`)
 - **`index.html`**: Estrutura HTML5 do álbum, contendo capa com temática Dragon Ball, esfera de energia animada, e páginas de slots por categoria (Guerreiros Z, Vilões, Red Ribbon).
@@ -47,42 +51,52 @@ Album-Alura/
 
 ## 🚀 Como Executar o Projeto
 
-### 1. Executar o Backend (FastAPI)
+### ⚡ Método Rápido (Recomendado)
 
-1. No terminal, acesse a pasta `backend`:
-   ```powershell
-   cd backend
-   ```
+Na raiz do projeto, execute o script de setup automático no **PowerShell**:
 
-2. (Opcional) Ative o ambiente virtual `venv`:
-   * **PowerShell:** `venv\Scripts\Activate.ps1`
-   * **CMD:** `venv\Scripts\activate.bat`
+```powershell
+.\setup.ps1
+```
 
-3. Instale as dependências (caso necessário):
-   ```bash
-   pip install fastapi uvicorn
-   ```
+O script irá automaticamente:
+1. ✅ Verificar se o Python está instalado
+2. 📦 Criar o ambiente virtual `venv` (ou reutilizar se já existir)
+3. ⬇️ Instalar todas as dependências listadas em `backend/requirements.txt`
+4. 🚀 Iniciar o servidor FastAPI em **`http://localhost:8000`**
 
-4. Inicie o servidor Backend:
-   ```bash
-   python main.py
-   ```
-   Ou com Uvicorn:
-   ```bash
-   python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-   ```
-
-   O backend estará ativo em **`http://localhost:8000`**.
+> **Nota:** Na primeira execução no PowerShell, pode ser necessário permitir scripts com:
+> ```powershell
+> Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+> ```
 
 ---
 
-### 2. Executar o Frontend
+### 🔧 Método Manual (Passo a Passo)
 
-1. Em um novo terminal, execute um servidor estático para a pasta `frontend`:
-   ```powershell
-   python -m http.server 3000 --directory frontend
-   ```
-2. Acesse no seu navegador: **[http://localhost:3000](http://localhost:3000)** (ou utilize a extensão Live Server no arquivo `index.html`).
+#### 1. Backend (FastAPI)
+
+```powershell
+cd backend
+python -m venv venv
+venv\Scripts\Activate.ps1      # PowerShell
+pip install -r requirements.txt
+python main.py
+```
+
+O backend estará ativo em **`http://localhost:8000`**.
+
+#### 2. Frontend
+
+Em um **novo terminal** (na raiz do projeto):
+
+```powershell
+python -m http.server 3000 --directory frontend
+```
+
+Acesse: **[http://localhost:3000](http://localhost:3000)**
+
+> Alternativamente, use a extensão **Live Server** do VS Code no arquivo `index.html`.
 
 ---
 
