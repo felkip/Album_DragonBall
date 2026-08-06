@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Album - Coleção Lendária</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sound Control -->
+    <button id="sound-toggle" class="sound-btn" aria-label="Alternar som">
+        <svg class="sound-icon-on" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor"
+                d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+        </svg>
+        <svg class="sound-icon-off hidden" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor"
+                d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.5C15.58,18 14.83,18.4 14,18.71V20.77C15.38,20.44 16.63,19.78 17.7,18.9L20.73,21.93L22,20.66L4.27,3M14,3.23V5.29C14.73,5.5 15.43,5.83 16.07,6.26L14.59,7.74C14.41,7.65 14.21,7.58 14,7.54V9.54L19,14.54C19,13.7 19,12.85 19,12C19,7.72 16,4.14 14,3.23M16.5,12C16.5,11.2 16.1,10.5 15.5,10.05L14,11.55V12.45L15.46,13.9C15.48,13.28 16.5,12.62 16.5,12Z" />
+        </svg>
+    </button>
+
+    <!-- Navigation Arrows -->
+    <button id="btn-prev" class="nav-btn nav-btn-left" aria-label="Página Anterior">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+            <path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+        </svg>
+    </button>
+    <button id="btn-next" class="nav-btn nav-btn-right" aria-label="Próxima Página">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+            <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+        </svg>
+    </button>
+
+    <!-- Album Container -->
+    <div class="album-viewport" id="album-viewport">
+        <div class="flip-book" id="book">
+
+            <!-- PAGINA 0: CAPA -->
+            <div class="page page-cover" data-density="hard">
+                <div class="page-content cover-content">
+                    <div class="cover-header">
+                        <span class="cover-seal">COLEÇÃO OFICIAL</span>
+                    </div>
+                    <div class="cover-body">
+                        <h1 class="cover-title glitch" data-text="DRAGON">DRAGON</h1>
+                        <h2 class="cover-subtitle glitch" data-text="BALL">BALL</h2>
+                        <div class="cover-art">
+                            <div class="art-grid"></div>
+
+                            <!-- Floating Mini Cards Silhouette Collage -->
+                            <div class="mini-card mc-turing">
+                                <div class="mc-avatar">DB</div>
+                                <span class="mc-num">#01</span>
+                            </div>
+                            <div class="mini-card mc-guido">
+                                <div class="mc-avatar">SZ</div>
+                                <span class="mc-num">#02</span>
+                            </div>
+                            <div class="mini-card mc-jobs">
+                                <div class="mc-avatar">CC</div>
+                                <span class="mc-num">#30</span>
+                            </div>
+
+                            <!-- Central Glowing 3D Tech Sphere -->
+                            <div class="tech-sphere">
+                                <div class="aura-glow"></div>
+                                <div class="sphere-core">
+                                    <svg class="dragonball-stars" viewBox="0 0 100 100">
+                                        <!-- Star 1 (Top) -->
+                                        <path d="M50 20 L53 27 L60 27 L55 31 L57 38 L50 34 L43 38 L45 31 L40 27 L47 27 Z" fill="#E53935" />
+                                        <!-- Star 2 (Left) -->
+                                        <path d="M32 45 L35 52 L42 52 L37 56 L39 63 L32 59 L25 63 L27 56 L22 52 L29 52 Z" fill="#E53935" />
+                                        <!-- Star 3 (Right) -->
+                                        <path d="M68 45 L71 52 L78 52 L73 56 L75 63 L68 59 L61 63 L63 56 L58 52 L65 52 Z" fill="#E53935" />
+                                        <!-- Star 4 (Bottom) -->
+                                        <path d="M50 70 L53 77 L60 77 L55 81 L57 88 L50 84 L43 88 L45 81 L40 77 L47 77 Z" fill="#E53935" />
+                                    </svg>
+                                </div>
+                                <div class="sphere-ring ring-1"></div>
+                                <div class="sphere-ring ring-2"></div>
+                            </div>
+                        </div>
+                        <p class="cover-footer-text">OS GUERREIROS MAIS PODEROSOS DO UNIVERSO</p>
+                    </div>
+                    <div class="cover-footer">
+                        <span>EDIÇÃO COLECIONADOR</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGINA 1: GUERREIROS Z -->
+            <div class="page page-left">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="tech-badge badge-guerreiros">GUERREIROS Z</span>
+                        <h3 class="page-title">Defensores da Terra</h3>
+                    </div>
+                    <div class="stickers-grid">
+                        <div class="sticker-slot">
+                            <div class="slot-number">#01</div>
+                            <div class="slot-name">Goku</div>
+                            <div class="slot-role">O herói lendário e protetor da Terra</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#02</div>
+                            <div class="slot-name">Vegeta</div>
+                            <div class="slot-role">O orgulhoso Príncipe dos Saiyajins</div>
+                        </div>
+                        <div class="sticker-slot special-slot">
+                            <div class="slot-number">#03</div>
+                            <div class="slot-name">Gohan</div>
+                            <div class="slot-role">O filho de Goku com potencial oculto devastador</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#04</div>
+                            <div class="slot-name">Piccolo</div>
+                            <div class="slot-role">Guerreiro Namekuseijin estrategista e mentor</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#05</div>
+                            <div class="slot-name">Trunks</div>
+                            <div class="slot-role">O guerreiro do futuro que viajou no tempo</div>
+                        </div>
+                    </div>
+                    <div class="page-footer">Pág. 1</div>
+                </div>
+            </div>
+
+            <!-- PAGINA 2: VILÕES -->
+            <div class="page page-right">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="tech-badge badge-viloes">VILÕES CLÁSSICOS</span>
+                        <h3 class="page-title">Ameaças ao Universo</h3>
+                    </div>
+                    <div class="stickers-grid">
+                        <div class="sticker-slot">
+                            <div class="slot-number">#06</div>
+                            <div class="slot-name">Freeza</div>
+                            <div class="slot-role">Imperador galáctico e arqui-inimigo saiyajin</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#07</div>
+                            <div class="slot-name">Cell</div>
+                            <div class="slot-role">Criatura perfeita com DNA dos guerreiros Z</div>
+                        </div>
+                        <div class="sticker-slot special-slot">
+                            <div class="slot-number">#08</div>
+                            <div class="slot-name">Majin Boo</div>
+                            <div class="slot-role">A força caótica e milenar de destruição pura</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#09</div>
+                            <div class="slot-name">Raditz</div>
+                            <div class="slot-role">O cruel irmão saiyajin de Goku</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#10</div>
+                            <div class="slot-name">Nappa</div>
+                            <div class="slot-role">O gigante e impiedoso guerreiro saiyajin</div>
+                        </div>
+                    </div>
+                    <div class="page-footer">Pág. 2</div>
+                </div>
+            </div>
+
+            <!-- PAGINA 3: RED RIBBON -->
+            <div class="page page-left">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="tech-badge badge-redribbon">RED RIBBON</span>
+                        <h3 class="page-title">Criações do Dr. Gero</h3>
+                    </div>
+                    <div class="stickers-grid">
+                        <div class="sticker-slot">
+                            <div class="slot-number">#11</div>
+                            <div class="slot-name">Androide 16</div>
+                            <div class="slot-role">O gigante pacífico que ama a natureza</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#12</div>
+                            <div class="slot-name">Androide 17</div>
+                            <div class="slot-role">O poderoso guardião da Ilha dos Monstros</div>
+                        </div>
+                        <div class="sticker-slot special-slot">
+                            <div class="slot-number">#13</div>
+                            <div class="slot-name">Androide 18</div>
+                            <div class="slot-role">A formidável guerreira casada com Kuririn</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#14</div>
+                            <div class="slot-name">Androide 19</div>
+                            <div class="slot-role">Boneco mecânico que drena energia vital</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#15</div>
+                            <div class="slot-name">Dr. Gero</div>
+                            <div class="slot-role">Cientista genial da Força Red Ribbon</div>
+                        </div>
+                    </div>
+                    <div class="page-footer">Pág. 3</div>
+                </div>
+            </div>
+
+            <!-- PAGINA 4: DIVINDADES -->
+            <div class="page page-right">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="tech-badge badge-divindades">DIVINDADES & MESTRES</span>
+                        <h3 class="page-title">Entidades Cósmicas</h3>
+                    </div>
+                    <div class="stickers-grid">
+                        <div class="sticker-slot">
+                            <div class="slot-number">#16</div>
+                            <div class="slot-name">Mestre Kame</div>
+                            <div class="slot-role">O sábio tartaruga e criador do Kamehameha</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#17</div>
+                            <div class="slot-name">Senhor Kaioh</div>
+                            <div class="slot-role">Guardião do Norte e tutor do Kaio-ken</div>
+                        </div>
+                        <div class="sticker-slot special-slot">
+                            <div class="slot-number">#18</div>
+                            <div class="slot-name">Bills</div>
+                            <div class="slot-role">O temível e guloso Deus da Destruição</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#19</div>
+                            <div class="slot-name">Whis</div>
+                            <div class="slot-role">O enigmático e elegante Anjo Guia</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#20</div>
+                            <div class="slot-name">Kami-Sama</div>
+                            <div class="slot-role">O antigo Deus e criador das Esferas da Terra</div>
+                        </div>
+                    </div>
+                    <div class="page-footer">Pág. 4</div>
+                </div>
+            </div>
+
+            <!-- PAGINA 5: OUTROS UNIVERSOS -->
+            <div class="page page-left">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="tech-badge badge-universos">OUTROS UNIVERSOS</span>
+                        <h3 class="page-title">Torneio do Poder - Vol. 1</h3>
+                    </div>
+                    <div class="stickers-grid">
+                        <div class="sticker-slot">
+                            <div class="slot-number">#21</div>
+                            <div class="slot-name">Jiren</div>
+                            <div class="slot-role">O guerreiro insuperável do Universo 11</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#22</div>
+                            <div class="slot-name">Hit</div>
+                            <div class="slot-role">O lendário assassino do Universo 6</div>
+                        </div>
+                        <div class="sticker-slot special-slot">
+                            <div class="slot-number">#23</div>
+                            <div class="slot-name">Toppo</div>
+                            <div class="slot-role">Líder da Tropa do Orgulho e candidato a Deus</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#24</div>
+                            <div class="slot-name">Dyspo</div>
+                            <div class="slot-role">O velocista sônico da Tropa do Orgulho</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#25</div>
+                            <div class="slot-name">Champa</div>
+                            <div class="slot-role">O ranzinza Deus da Destruição do Universo 6</div>
+                        </div>
+                    </div>
+                    <div class="page-footer">Pág. 5</div>
+                </div>
+            </div>
+
+            <!-- PAGINA 6: FUSÕES E ALIADOS -->
+            <div class="page page-right">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="tech-badge badge-fusoes">FUSÕES & ALIADOS</span>
+                        <h3 class="page-title">Torneio do Poder - Vol. 2</h3>
+                    </div>
+                    <div class="stickers-grid">
+                        <div class="sticker-slot">
+                            <div class="slot-number">#26</div>
+                            <div class="slot-name">Vegito</div>
+                            <div class="slot-role">Fusão suprema de Goku e Vegeta com brincos Potara</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#27</div>
+                            <div class="slot-name">Gogeta</div>
+                            <div class="slot-role">Fusão imbatível via Dança Metamoru</div>
+                        </div>
+                        <div class="sticker-slot special-slot">
+                            <div class="slot-number">#28</div>
+                            <div class="slot-name">Gotenks</div>
+                            <div class="slot-role">A poderosa e travessa fusão de Goten e Trunks</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#29</div>
+                            <div class="slot-name">Kuririn</div>
+                            <div class="slot-role">O guerreiro humano mais forte e melhor amigo de Goku</div>
+                        </div>
+                        <div class="sticker-slot">
+                            <div class="slot-number">#30</div>
+                            <div class="slot-name">Bulma</div>
+                            <div class="slot-role">Gênia da Corporação Cápsula e aliada vital</div>
+                        </div>
+                    </div>
+                    <div class="page-footer">Pág. 6</div>
+                </div>
+            </div>
+
+            <!-- PAGINA 7: CONTRACAPA -->
+            <div class="page page-cover-back" data-density="hard">
+                <div class="page-content cover-back-content">
+                    <div class="cover-back-header">
+                        <h2>DRAGON BALL ALBUM</h2>
+                    </div>
+                    <div class="cover-back-body">
+                        <div class="tech-logo-collage">
+                            <span>GUERREIROS Z</span> • <span>VILÕES</span> • <span>RED RIBBON</span> • <span>DIVINDADES</span> • <span>OUTROS UNIVERSOS</span>
+                        </div>
+                        <p class="summary-text">
+                            O Dragon Ball Album é um tributo interativo à história e batalhas mais épicas da saga que definiu gerações. Reúna as esferas do dragão e invoque Shenlong!
+                        </p>
+                        <div class="barcode-container">
+                            <div class="barcode">
+                                <!-- Simulated barcode lines -->
+                                <div class="bar"></div>
+                                <div class="bar thin"></div>
+                                <div class="bar"></div>
+                                <div class="bar thick"></div>
+                                <div class="bar thin"></div>
+                                <div class="bar"></div>
+                                <div class="bar thick"></div>
+                                <div class="bar"></div>
+                                <div class="bar thin"></div>
+                                <div class="bar thick"></div>
+                            </div>
+                            <span class="barcode-number">9 788575 228494</span>
+                        </div>
+                    </div>
+                    <div class="cover-back-footer">
+                        <span>Edição Especial • 2026</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Page Flip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+    <!-- Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
