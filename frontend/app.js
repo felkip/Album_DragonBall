@@ -1,65 +1,36 @@
-// ===================================================
-// CONFIGURAÇÃO DA API
-// Quando o frontend for servido pelo FastAPI (Dia 3), a API está
-// no mesmo servidor — usamos uma URL relativa ou o endereço completo.
-// ===================================================
-const API_BASE_URL = "http://localhost:8000";
+const figurinhas = [
+    { id: 1, nome: "Goku", imagem: "assets/Goku.png" },
+    { id: 2, nome: "Vegeta", imagem: "assets/Vegeta.png" },
+];
 
-// ===================================================
-// FUNÇÃO: Preenche os slots do álbum com imagens da API
-// Esta função é chamada após o álbum ser inicializado.
-// ===================================================
-async function preencherFigurinhas() {
-    try {
-        // 1. Busca as figurinhas disponíveis na API
-        const response = await fetch(`${API_BASE_URL}/figurinhas`);
+function preencherFigurinhas() {
+    const figurinhasPorId = new Map(figurinhas.map((figurinha) => [figurinha.id, figurinha]));
 
-        if (!response.ok) {
-            throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+    document.querySelectorAll(".sticker-slot").forEach((slot) => {
+        const numero = slot.querySelector(".slot-number")?.textContent;
+        const id = Number.parseInt(numero?.replace("#", ""), 10);
+        const figurinha = figurinhasPorId.get(id);
+
+        if (!figurinha) {
+            return;
         }
 
-        // 2. Converte o JSON em array JavaScript
-        const figurinhas = await response.json();
-
-        // 3. Cria um Map de id → figurinha para lookup rápido
-        //    Ex: 1 → { id: 1, nome: "Alan Turing", imagem_url: "/imgs/01-alan-turing.jpg" }
-        const porId = new Map(figurinhas.map(f => [f.id, f]));
-
-        // 4. Percorre todos os slots do HTML
-        const slots = document.querySelectorAll(".sticker-slot");
-
-        for (const slot of slots) {
-            const slotNumeroEl = slot.querySelector(".slot-number");
-            if (!slotNumeroEl) continue;
-
-            // Extrai o número do slot: "#01" → 1
-            const id = parseInt(slotNumeroEl.textContent.replace("#", ""), 10);
-
-            if (!porId.has(id)) continue;
-
-            // A figurinha existe: insere a imagem
-            const figurinha = porId.get(id);
-
-            const img = document.createElement("img");
-            img.src = `${API_BASE_URL}${figurinha.imagem_url}`;
-            img.alt = figurinha.nome;
-            img.className = "sticker-img";
-
-            img.onload = () => slot.classList.add("slot-preenchido");
-            img.onerror = () => console.warn(`Imagem não encontrada: ${figurinha.nome}`);
-
-            slot.insertBefore(img, slot.firstChild);
-        }
-
-        console.log(`✅ ${figurinhas.length} figurinhas carregadas da API!`);
-
-    } catch (erro) {
-        console.warn("⚠️  Não foi possível conectar à API do backend:", erro.message);
-        console.info("ℹ️  Inicie o servidor: cd backend && uvicorn main:app --reload");
-    }
+        const img = document.createElement("img");
+        img.src = figurinha.imagem;
+        img.alt = figurinha.nome;
+        img.className = "sticker-img";
+        img.onload = () => slot.classList.add("slot-preenchido");
+        img.onerror = () => {
+            console.error(`Não foi possível carregar a imagem: ${figurinha.imagem}`);
+            img.remove();
+        };
+        slot.prepend(img);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    preencherFigurinhas();
+
     const bookElement = document.getElementById("book");
     const btnPrev = document.getElementById("btn-prev");
     const btnNext = document.getElementById("btn-next");
@@ -92,9 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Load pages from HTML
         pageFlip.loadFromHTML(document.querySelectorAll(".page"));
-
-        // Busca e exibe as figurinhas do backend nos slots correspondentes
-        preencherFigurinhas();
 
         // Estado de arraste personalizado
         let activeDragPage = null;
@@ -205,10 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Show book after successful initialization
         bookElement.style.display = "block";
-
-        // Dia 3: Busca as figurinhas da API e preenche o álbum
-        // A função é async, chamamos sem await para não bloquear a inicialização do álbum
-        preencherFigurinhas();
 
     } catch (error) {
         console.error("Erro ao inicializar a biblioteca PageFlip:", error);
