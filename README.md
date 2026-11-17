@@ -1,12 +1,12 @@
 # 🐉 Dragon Ball Album - Coleção Lendária
 
-O **Dragon Ball Album** é uma aplicação web interativa desenvolvida para colecionadores e fãs do universo Dragon Ball. O projeto simula um álbum de figurinhas físico (estilo "copa do mundo") dedicado aos Guerreiros Z, Vilões Clássicos e a Red Ribbon.
+O **Dragon Ball Album** é uma aplicação web interativa que simula um álbum de figurinhas físico dedicado aos Guerreiros Z, Vilões Clássicos e à Red Ribbon. O frontend pode ser publicado como site estático; as imagens de Goku e Vegeta são carregadas de `frontend/assets`, sem depender de um backend.
 
 ---
 
 ## 🎯 Objetivo
 
-Proporcionar uma experiência imersiva de colecionar figurinhas digitais de Dragon Ball. O projeto une um visual sci-fi/anime moderno com animações imersivas de simulação física (como a virada de página e geração de sons realistas de papel) e integração dinâmica com um servidor backend em **FastAPI** para carregar as figurinhas (ex: Goku e Vegeta).
+Proporcionar uma experiência interativa de colecionar figurinhas digitais. O frontend inclui virada de páginas, efeitos visuais e sonoros, e carrega localmente as imagens disponíveis. O backend FastAPI permanece no repositório como opção para desenvolvimento.
 
 ---
 
@@ -21,6 +21,9 @@ Album-Alura/
 │   ├── main.py
 │   └── requirements.txt
 ├── frontend/
+│   ├── assets/
+│   │   ├── Goku.png
+│   │   └── Vegeta.png
 │   ├── index.html
 │   ├── style.css
 │   └── app.js
@@ -45,13 +48,21 @@ Album-Alura/
 - **`app.js`**:
   - Inicialização do efeito de folhear páginas com a biblioteca `St.PageFlip`.
   - Sintetização de efeitos sonoros de papel virando via Web Audio API.
-  - Consumo assíncrono da API (`http://localhost:8000/figurinhas`) para posicionar e renderizar as imagens nos slots.
+  - Carregamento local das imagens de `assets/` para os slots #01 e #02, compatível com GitHub Pages.
 
 ---
 
 ## 🚀 Como Executar o Projeto
 
-### ⚡ Método Rápido (Recomendado)
+### Publicar ou testar o frontend estático
+
+O álbum pode ser aberto sem iniciar a API. Para testar, use o Live Server no arquivo `frontend/index.html`. Se o GitHub Pages publicar a raiz do repositório, a página estará em `/frontend/index.html`; para usar o endereço raiz, publique o conteúdo de `frontend/` como artifact do Pages. As imagens locais de Goku e Vegeta são incluídas no frontend.
+
+### Backend opcional
+
+O backend FastAPI continua disponível para desenvolvimento e pode ser iniciado pelo script abaixo. Ele não é necessário para a demonstração estática no GitHub Pages.
+
+#### Método rápido
 
 Na raiz do projeto, execute o script de setup automático no **PowerShell**:
 
